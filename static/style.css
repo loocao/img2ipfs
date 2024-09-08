@@ -109,12 +109,31 @@ body {
     align-items: center;
 }
 
-.copyall button {
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button-group button {
     width: 70px;
     height: 28px;
     border-radius: 14px;
-    margin: 0 12px;
     background-color: #fff;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-group button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.gateway-button {
+    background-color: #d0dbee;
 }
 
 .upload .title select {
@@ -147,6 +166,11 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    transition: background-color 0.3s;
+}
+
+.upload .content:hover {
+    background-color: #f9f9f9;
 }
 
 .upload .content .icon {
@@ -161,6 +185,7 @@ body {
 
 .upload.dragenter {
     box-shadow: 20px 20px 20px 0 rgba(0, 0, 0, 0.25);
+    background-color: #f0f8ff;
 }
 
 .upload.dragenter .content>* {
@@ -299,7 +324,7 @@ body {
         margin-bottom: 5px;
     }
 
-    .copyall button {
+    .button-group button {
         width: 50px;
         margin: 0 4px;
     }
