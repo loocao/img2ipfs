@@ -189,8 +189,26 @@ function deleteItem(obj) {
 
 function selectFormat(obj) {
     const format = obj.id.replace('_', '');
-    document.querySelectorAll(`#Imgs${format}`).forEach(input => {
-        input.parentElement.nextElementSibling.value = input.value;
+    document.querySelectorAll('.item').forEach(item => {
+        const url = item.querySelector('#Imgs_url').value;
+        let formattedText;
+        switch (format) {
+            case 'url':
+                formattedText = url;
+                break;
+            case 'html':
+                formattedText = `<img src="${url}"/>`;
+                break;
+            case 'Ubb':
+                formattedText = `[img]${url}[/img]`;
+                break;
+            case 'markdown':
+                formattedText = `![](${url})`;
+                break;
+            default:
+                formattedText = url;
+        }
+        item.querySelector('#show').value = formattedText;
     });
 }
 
