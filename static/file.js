@@ -197,7 +197,8 @@ function selectFormat(obj) {
 function changeGateway(obj) {
     const newUrlBase = obj.value;
     document.querySelectorAll("#show").forEach(input => {
-        const newUrl = input.value.replace(/https:\/\/([^\/]+)/i, `https://${newUrlBase}`);
+        const currentUrl = input.value;
+        const newUrl = currentUrl.replace(/https:\/\/[^\/]+/, newUrlBase);
         input.value = newUrl;
         input.closest('.item').querySelector(".file #url").href = newUrl;
     });
