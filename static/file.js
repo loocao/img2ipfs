@@ -140,36 +140,35 @@ $(document).ready(() => {
                     return xhr;
                 },
                 success: res => {
-                    const imgSrc = `https://cdn.ipfsscan.io/ipfs/${res.Hash}`;
-                    $('#file').val(null);
-                    if (res.code === -1) {
-                        $(`.${randomClass}`).fadeOut();
-                        alert(res.Hash);
+                    if (res.Hash) {
+                        const imgSrc = `https://cdn.ipfsscan.io/ipfs/${res.Hash}`;
+                        $('#file').val(null);
+                        $(`.${randomClass}`).find('.progress-inner').addClass('success');
+                        $(`.${randomClass}`).find('.status-success').show();
+                        $(`.${randomClass}`).find('#url').attr({ href: imgSrc, target: '_blank' });
+                        $(`.${randomClass}`).find('#Imgs_url').val(imgSrc);
+                        $(`.${randomClass}`).find('#Imgs_html').val(`<img src="${imgSrc}"/>`);
+                        $(`.${randomClass}`).find('#Imgs_Ubb').val(`[img]${imgSrc}[/img]`);
+                        $(`.${randomClass}`).find('#Imgs_markdown').val(`![](${imgSrc})`);
+                        $(`.${randomClass}`).find('#show').show().val(imgSrc);
+                        $('.copyall').show();
+                        const title = $('.filelist .title').html().replace('上传列表', '');
+                        $('.filelist .title').html(title);
                     } else {
-                        if (res.Hash) {
-                            $(`.${randomClass}`).find('.progress-inner').addClass('success');
-                            $(`.${randomClass}`).find('.status-success').show();
-                            $(`.${randomClass}`).find('#url').attr({ href: imgSrc, target: '_blank' });
-                            $(`.${randomClass}`).find('#Imgs_url').val(imgSrc);
-                            $(`.${randomClass}`).find('#Imgs_html').val(`<img src="${imgSrc}"/>`);
-                            $(`.${randomClass}`).find('#Imgs_Ubb').val(`[img]${imgSrc}[/img]`);
-                            $(`.${randomClass}`).find('#Imgs_markdown').val(`![](${imgSrc})`);
-                            $(`.${randomClass}`).find('#show').show().val(imgSrc);
-                            $('.copyall').show();
-                            const title = $('.filelist .title').html().replace('上传列表', '');
-                            $('.filelist .title').html(title);
-                        } else {
-                            $(`.${randomClass}`).find('.progress-inner').addClass('error');
-                            $(`.${randomClass}`).find('.status-error').show();
-                            $(`.${randomClass}`).find('#show').show().val("上传出错！");
-                        }
+                        handleError(randomClass);
                     }
                 },
-                fail: () => {
-                    $(`.${randomClass}`).fadeOut();
+                error: () => {
+                    handleError(randomClass);
                 }
             });
         }
+    }
+
+    function handleError(randomClass) {
+        $(`.${randomClass}`).find('.progress-inner').addClass('error');
+        $(`.${randomClass}`).find('.status-error').show();
+        $(`.${randomClass}`).find('#show').show().val("上传出错！");
     }
 
     // 获取文件大小
