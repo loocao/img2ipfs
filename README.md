@@ -1,6 +1,6 @@
 # ipfs图床
 
-演示：https://ipf.pages.dev/
+演示：https://cdn.ipfsscan.io/
 
 上传图片等文件到ipfs
 
@@ -34,7 +34,7 @@ infura-ipfs.io
 ```
 
 ### IPFS项目
-https://github.com/ipfs/ipfs 
+https://github.com/ipfs/kubo 
 
 ### IPFS客户端
-推荐go版 https://github.com/ipfs/go-ipfs/releases
+推荐go版 https://github.com/ipfs/kubo/releases
