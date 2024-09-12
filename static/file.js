@@ -1,3 +1,4 @@
+var gateways = ['https://ipfs.blockframe.io','https://ipfs.crossbell.io','https://4everland.io','https://polygon.stampsdaq.com','https://ipfs.supremelegend.io','https://ipfs.decentralized-content.com','https://gateway.pinata.cloud','https://eth.sucks','https://hardbin.com','https://gw.ipfs-lens.dev','https://gateway.v2ex.pro'];
 $(document).ready(() => {
     // 临时粘贴上传
     $(document).on('paste', event => {
@@ -142,6 +143,7 @@ $(document).ready(() => {
                 success: res => {
                     if (res.Hash) {
                         const imgSrc = `https://cdn.ipfsscan.io/ipfs/${res.Hash}`;
+                        setTimeout(seeding(res),3000)
                         $('#file').val(null);
                         $(`.${randomClass}`).find('.progress-inner').addClass('success');
                         $(`.${randomClass}`).find('.status-success').show();
