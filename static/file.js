@@ -1,4 +1,11 @@
 var gateways = ['https://ipfs.blockframe.io','https://ipfs.crossbell.io','https://4everland.io','https://polygon.stampsdaq.com','https://ipfs.supremelegend.io','https://ipfs.decentralized-content.com','https://gateway.pinata.cloud','https://eth.sucks','https://hardbin.com','https://gw.ipfs-lens.dev','https://gateway.v2ex.pro'];
+function seeding(res){
+    for(var i0 = 0; i0 < gateways.length; i0++)
+    {
+        let img = new Image;
+        img.src =  gateways[i0]+ '/ipfs/'+res.Hash  + "?filename=" + encodeURI(res.Name);
+    }
+}
 $(document).ready(() => {
     // 临时粘贴上传
     $(document).on('paste', event => {
